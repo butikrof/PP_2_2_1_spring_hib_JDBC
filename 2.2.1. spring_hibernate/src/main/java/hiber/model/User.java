@@ -19,6 +19,12 @@ public class User {
    @Column(name = "email")
    private String email;
 
+
+   //для связи с ентити САR
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn (name = "car_id")
+   private Car car;
+
    public User() {}
    
    public User(String firstName, String lastName, String email) {
@@ -57,5 +63,25 @@ public class User {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   //гет и сет - для новой private Car car;
+   public Car getCar() {
+      return car;
+   }
+   public void setCar(Car car) {
+      this.car = car;
+   }
+
+   //toString
+   @Override
+   public String toString() {
+      return "Гражданин{" +
+              "Номер=" + id +
+              ", Имя='" + firstName + '\'' +
+              ", Фамилия='" + lastName + '\'' +
+              ", почта='" + email + '\'' +
+              ", имущество=" + car +
+              '}';
    }
 }
